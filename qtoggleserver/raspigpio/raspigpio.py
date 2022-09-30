@@ -51,7 +51,7 @@ class GPIO(ports.Port):
 
     def __init__(self, no: int, def_value: Optional[bool] = None, def_output: Optional[bool] = None) -> None:
         self._no: int = no
-        self._def_value: Optional[bool] = def_value  # Also plays the role of pull setup
+        self._def_value: Optional[bool] = def_value  # also plays the role of pull setup
 
         # The default i/o state
         if def_output is None:
@@ -97,7 +97,6 @@ class GPIO(ports.Port):
             def_value = def_value or False  # def_value can be None
             self.debug('configuring as output (initial=%s)', str(def_value).lower())
             self._exec_raspi_gpio(f'set {self._no} op pn d{self._OUTPUT_LEVEL_MAPPING[def_value]}')
-
         else:
             self.debug('configuring as input (pull=%s)', self._PULL_VALUE_MAPPING[def_value])
             self._exec_raspi_gpio(f'set {self._no} ip p{self._PULL_MAPPING[def_value]}')
