@@ -1,4 +1,7 @@
 from .raspigpio import GPIO
 
 
-VERSION = 'unknown-version'
+__all__ = ["GPIO"]
+
+
+VERSION = "0.0.0"
