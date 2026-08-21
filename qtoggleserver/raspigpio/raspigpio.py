@@ -65,7 +65,6 @@ class GPIO(core_ports.Port):
     async def read_value(self) -> bool:
         return "level=1" in self._exec_raspi_gpio(f"get {self._no}")
 
-    @core_ports.skip_write_unavailable
     async def write_value(self, value: bool) -> None:
         self.debug("writing output value %s", json_utils.dumps(value))
         self._exec_raspi_gpio(f"set {self._no} d{self._OUTPUT_LEVEL_MAPPING[value]}")
