@@ -1,7 +1,7 @@
 import subprocess
 
 from qtoggleserver.core import ports as core_ports
-from qtoggleserver.core.typing import PortValue
+from qtoggleserver.core.typing import NullablePortValue, PortValue
 from qtoggleserver.utils import json as json_utils
 
 
@@ -63,7 +63,7 @@ class GPIO(core_ports.Port):
     async def handle_enable(self) -> None:
         self._configure(self._def_output, self._def_value)
 
-    async def read_value(self) -> bool:
+    async def read_value(self) -> NullablePortValue:
         return "level=1" in self._exec_raspi_gpio(f"get {self._no}")
 
     async def write_value(self, value: PortValue) -> None:
